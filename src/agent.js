@@ -9,14 +9,11 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const response = await openai.createChatCompletion({
-    model: 'gpt-4-0613',
-    messages: [
-        {
-            "role": "user",
-            "content": "Hello, how are you?"
-        }
-    ]
-})
+function getChatCompletion(messages, model = 'gpt-4-0613' ) {
+    return openai.createChatCompletion({
+        model,
+        messages
+    });
+}
 
-console.log(response.data.choices[0].message.content);
+export { getChatCompletion };
